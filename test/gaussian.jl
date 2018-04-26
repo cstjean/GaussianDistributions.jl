@@ -8,6 +8,10 @@ x = rand()
 σ = rand()
 Σ = σ*σ'
 
+# Check type conversions
+Gaussian{Vector{Float64}, Matrix{Float64}}[Gaussian([1], eye(2)),
+                                           Gaussian(SVector(1), @SMatrix [1 0; 0 1])]
+
 p = pdf(Normal(μ, √Σ), x)
 @test pdf(Gaussian(μ, Σ), x) ≈ p
 @test pdf(Gaussian(μ, Σ*I), x) ≈ p
